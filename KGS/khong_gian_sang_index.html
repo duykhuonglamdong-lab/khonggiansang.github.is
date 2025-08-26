@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Không Gian Sáng — Thiết bị điện • Chiếu sáng • Nội thất</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f7f6;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#f59e0b; /* vàng cam */
+      --accent-dark:#b45309;
+      --text:#0f172a;
+      --glass: rgba(255,255,255,0.6);
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1140px;margin:0 auto;padding:24px;}
+    header{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(255,255,255,0.85);border-bottom:1px solid rgba(15,23,42,0.06);z-index:40}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:44px;width:auto;display:block}
+    .brand h1{font-size:16px;margin:0;font-weight:800;letter-spacing:0.4px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav.desktop{display:flex;gap:18px;align-items:center}
+    nav.desktop a{font-weight:600;color:var(--muted);padding:8px 10px;border-radius:10px}
+    nav.desktop a:hover{color:var(--text);background:rgba(15,23,42,0.03)}
+    .cta{background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
+    /* mobile nav */
+    .btn-menu{display:none;background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px;border-radius:8px}
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:48px 0}
+    .hero-left h2{font-size:28px;margin:0 0 12px 0;line-height:1.05}
+    .hero-left p{color:var(--muted);margin:0 0 16px 0;max-width:54ch}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px;color:var(--accent-dark);box-shadow:0 2px 10px rgba(11,21,45,0.04)}
+    .hero-visual{border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(11,21,45,0.06)}
+    .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+    .features{display:flex;gap:14px;margin-top:16px}
+    .feature{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px}
+    /* categories grid */
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .card{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid rgba(15,23,42,0.04);box-shadow:0 6px 18px rgba(11,21,45,0.03)}
+    .card img{width:100%;height:160px;object-fit:cover;display:block}
+    .card .meta{padding:14px}
+    .card h4{margin:0 0 6px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    /* featured */
+    .grid3 .price{margin-top:10px;font-weight:800;color:var(--text)}
+    .tag{background:rgba(245,158,11,0.12);color:var(--accent-dark);padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px}
+    /* about */
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:18px}
+    .about ul{padding-left:18px;margin:10px 0 0 0;color:var(--text)}
+    .about li{margin-bottom:10px}
+    /* testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .testi{padding:16px}
+    /* contact */
+    .contact{display:grid;grid-template-columns:1fr 420px;gap:24px;margin-top:18px;align-items:start}
+    form{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(15,23,42,0.04)}
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+    .map{border-radius:12px;overflow:hidden;border:1px solid rgba(15,23,42,0.04)}
+    /* footer */
+    footer{margin-top:28px;padding:28px 0;background:#0f172a;color:#e6eef8;border-top:1px solid rgba(255,255,255,0.03)}
+    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:start}
+    .small{font-size:12px;color:rgba(230,238,248,0.78)}
+    /* responsive */
+    @media (max-width:1000px){
+      .grid3{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:repeat(2,1fr)}
+      .about{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr;grid-auto-rows:auto}
+      nav.desktop{display:none}
+      .btn-menu{display:inline-block}
+    }
+    @media (max-width:640px){
+      .grid3{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+      .hero{padding:18px 0}
+      .brand h1{font-size:14px}
+      .brand img{height:36px}
+      .hero-left h2{font-size:22px}
+      .badge{font-size:12px}
+    }
+    /* small animations */
+    .fade-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.show{opacity:1;transform:none}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 10px;border-radius:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <!-- Put your logo file in same folder and name it `logo.jpg`. -->
+        <img src="logo.jpg" alt="Không Gian Sáng Logo" onerror="this.style.display='none'"/>
+        <div>
+          <h1>Không Gian Sáng</h1>
+          <p>Thiết bị điện • Chiếu sáng • Nội thất hiện đại</p>
+        </div>
+      </div>
+
+      <nav class="desktop" aria-label="Main navigation">
+        <a href="#san-pham">Sản phẩm</a>
+        <a href="#ve-chung-toi">Về chúng tôi</a>
+        <a href="#du-an">Dự án</a>
+        <a href="#lien-he">Liên hệ</a>
+        <button class="cta" onclick="document.querySelector('#lien-he').scrollIntoView({behavior:'smooth'})">Nhận báo giá</button>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn-menu" onclick="toggleMenu()">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left fade-up" id="heroText">
+        <div class="badges"><span class="badge">Showroom mới</span><span class="badge">Tư vấn miễn phí</span></div>
+        <h2>Không gian sống rực rỡ với <span style="color:var(--accent)">ánh sáng thông minh</span></h2>
+        <p>Chuyên cung cấp thiết bị điện, giải pháp chiếu sáng & nội thất hiện đại. Tối ưu thẩm mỹ – tiết kiệm năng lượng – lắp đặt nhanh chóng.</p>
+
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="cta" onclick="document.querySelector('#san-pham').scrollIntoView({behavior:'smooth'})">Khám phá sản phẩm</button>
+          <button class="btn-ghost" onclick="document.querySelector('#lien-he').scrollIntoView({behavior:'smooth'})">Tư vấn miễn phí</button>
+        </div>
+
+        <div class="features">
+          <div class="feature">✔️ <strong>Bảo hành chính hãng</strong></div>
+          <div class="feature">🚚 Giao nhanh</div>
+          <div class="feature">🎨 Thiết kế 1-1</div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up" id="heroVisual" style="height:320px">
+        <img src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=1400&auto=format&fit=crop" alt="Hero image">
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="san-pham" style="margin-top:28px">
+      <div style="display:flex;align-items:end;justify-content:space-between;">
+        <div>
+          <h3 style="margin:0;font-size:20px">Danh mục nổi bật</h3>
+          <p class="small">Sản phẩm tuyển chọn cho mọi không gian.</p>
+        </div>
+        <button class="btn-ghost" onclick="alert('Đi tới trang sản phẩm')">Xem tất cả</button>
+      </div>
+
+      <div class="grid3">
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" alt="Thiết bị điện">
+          <div class="meta">
+            <h4>Thiết Bị Điện</h4>
+            <p>Ổ cắm, công tắc, aptomat, thiết bị thông minh...</p>
+          </div>
+        </article>
+
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=800&auto=format&fit=crop" alt="Đèn chiếu sáng">
+          <div class="meta">
+            <h4>Đèn Chiếu Sáng</h4>
+            <p>Đèn trần, downlight, led panel, đèn trang trí...</p>
+          </div>
+        </article>
+
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop" alt="Nội thất">
+          <div class="meta">
+            <h4>Nội Thất Hiện Đại</h4>
+            <p>Bàn ghế, sofa, kệ tủ, decor tối giản...</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Featured products -->
+    <section style="margin-top:28px;background:#fff;padding:18px;border-radius:16px">
+      <div style="display:flex;align-items:end;justify-content:space-between">
+        <div>
+          <h3 style="margin:0;font-size:20px">Sản phẩm đề xuất</h3>
+          <p class="small">Chất lượng – giá hợp lý – bảo hành rõ ràng.</p>
+        </div>
+        <button class="btn-ghost" onclick="alert('Xem báo giá')">Xem báo giá</button>
+      </div>
+
+      <div class="grid3" style="margin-top:12px">
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=800&auto=format&fit=crop" alt="Đèn thả">
+          <div class="meta">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h4>Đèn thả Nordic Minimal</h4><span class="tag">Bán chạy</span>
+            </div>
+            <div class="price">1.290.000₫</div>
+            <button class="cta" style="margin-top:10px">Thêm vào báo giá</button>
+          </div>
+        </article>
+
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1596445836561-cf2f9c2eb2aa?q=80&w=800&auto=format&fit=crop" alt="Công tắc">
+          <div class="meta">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h4>Công tắc cảm ứng kính</h4><span class="tag">Smart Home</span>
+            </div>
+            <div class="price">390.000₫</div>
+            <button class="cta" style="margin-top:10px">Thêm vào báo giá</button>
+          </div>
+        </article>
+
+        <article class="card fade-up">
+          <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=800&auto=format&fit=crop" alt="Sofa">
+          <div class="meta">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h4>Sofa nỉ dáng L</h4><span class="tag">New</span>
+            </div>
+            <div class="price">7.990.000₫</div>
+            <button class="cta" style="margin-top:10px">Thêm vào báo giá</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="ve-chung-toi" style="margin-top:28px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
+        <div style="flex:1">
+          <h3 style="margin:0;font-size:20px">Vì sao chọn Không Gian Sáng?</h3>
+          <ul class="small" style="margin-top:10px">
+            <li><strong>Đồng bộ</strong>: cung cấp trọn gói điện – ánh sáng – nội thất.</li>
+            <li><strong>Tiết kiệm</strong>: tư vấn giải pháp tối ưu công suất & chi phí.</li>
+            <li><strong>Thẩm mỹ</strong>: phong cách hiện đại, tối giản, bền xu hướng.</li>
+            <li><strong>Dịch vụ nhanh</strong>: hỗ trợ 24/7, lắp đặt trong 48 giờ.</li>
+          </ul>
+          <div style="margin-top:14px;display:flex;gap:10px">
+            <button class="cta">Đặt lịch khảo sát</button>
+            <button class="btn-ghost">Tải hồ sơ năng lực</button>
+          </div>
+        </div>
+        <div style="width:360px;display:grid;gap:10px">
+          <div class="card"><img src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          <div class="card"><img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          <div class="card" style="grid-column:1/span-1"><img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2cc1?q=80&w=1000&auto=format&fit=crop" alt=""></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="du-an" style="margin-top:28px">
+      <h3 style="font-size:20px;margin:0">Khách hàng nói gì</h3>
+      <div class="testimonials">
+        <div class="card testi fade-up">
+          <div style="color:var(--accent)">★★★★★</div>
+          <p style="margin-top:8px">“Lắp đặt nhanh, tư vấn tận tâm. Ánh sáng đẹp và tiết kiệm điện rõ rệt.”</p>
+          <div class="small" style="margin-top:10px">Anh Minh – Q.7</div>
+        </div>
+        <div class="card testi fade-up">
+          <div style="color:var(--accent)">★★★★★</div>
+          <p style="margin-top:8px">“Đội ngũ chuyên nghiệp, thiết kế đẹp và phù hợp.”</p>
+          <div class="small" style="margin-top:10px">Chị Lan – Q.3</div>
+        </div>
+        <div class="card testi fade-up">
+          <div style="color:var(--accent)">★★★★★</div>
+          <p style="margin-top:8px">“Giá tốt, lắp đặt đúng tiến độ, rất hài lòng.”</p>
+          <div class="small" style="margin-top:10px">Anh Hùng – Bình Thạnh</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="lien-he" style="margin-top:28px">
+      <h3 style="font-size:20px;margin:0">Liên hệ tư vấn & báo giá</h3>
+      <div class="contact">
+        <div>
+          <p class="small">Điền thông tin, đội ngũ Không Gian Sáng sẽ liên hệ trong 1 giờ làm việc.</p>
+          <form id="contactForm" onsubmit="event.preventDefault();submitForm()" style="margin-top:12px">
+            <div class="row">
+              <input id="name" placeholder="Họ và tên" required>
+              <input id="phone" placeholder="Số điện thoại" required>
+            </div>
+            <div style="margin-top:10px"><input id="email" placeholder="Email (không bắt buộc)"></div>
+            <div style="margin-top:10px"><textarea id="note" placeholder="Nhu cầu của bạn (ví dụ: đèn cho phòng khách 20m²...)" rows="5"></textarea></div>
+            <div style="margin-top:12px"><button class="cta" type="submit">Gửi yêu cầu</button></div>
+          </form>
+
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;">
+            <div class="small">📞 090x xxx xxx</div>
+            <div class="small">✉️ lienhe@kongsangsang.vn</div>
+            <div class="small">📍 123 Đường Ánh Dương, TP.HCM</div>
+          </div>
+        </div>
+
+        <div class="map">
+          <!-- If you want a working map, replace `YOUR_GOOGLE_MAPS_EMBED` with a real embed link -->
+          <iframe title="Bản đồ" class="w-full" style="width:100%;height:360px;border:0" src="https://www.google.com/maps?q=Ho%20Chi%20Minh%20City&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="height:44px;width:44px;border-radius:10px;background:#fff;display:grid;place-items:center">
+              <img src="logo.jpg" alt="logo" style="height:28px;width:auto" onerror="this.style.display='none'"/>
+            </div>
+            <div style="font-weight:800">Không Gian Sáng</div>
+          </div>
+          <p class="small" style="margin-top:10px">Thiết bị điện, chiếu sáng & nội thất hiện đại – đồng bộ cho mọi không gian.</p>
+        </div>
+
+        <div>
+          <div style="font-weight:700;margin-bottom:8px">Danh mục</div>
+          <ul class="small" style="list-style:none;padding:0;margin:0">
+            <li>Thiết bị điện</li><li>Đèn chiếu sáng</li><li>Nội thất</li><li>Giải pháp smart home</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight:700;margin-bottom:8px">Hỗ trợ</div>
+          <ul class="small" style="list-style:none;padding:0;margin:0">
+            <li>Chính sách bảo hành</li><li>Giao hàng & lắp đặt</li><li>Đổi trả</li><li>Hướng dẫn sử dụng</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight:700;margin-bottom:8px">Kết nối</div>
+          <ul class="small" style="list-style:none;padding:0;margin:0">
+            <li>Facebook</li><li>Zalo OA</li><li>TikTok</li><li>Youtube</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.06);margin-top:18px;padding-top:12px;display:flex;justify-content:space-between;align-items:center">
+        <div class="small">© 2025 Không Gian Sáng. All rights reserved.</div>
+        <div class="small">Thiết kế bởi KGS Web Studio</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // simple fade-up observer
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target) } })
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+    // menu toggle for small screens (placeholder)
+    function toggleMenu(){
+      alert('Menu (mobile) chưa được bật — đây là bản tĩnh.')
+    }
+
+    function submitForm(){
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const note = document.getElementById('note').value.trim();
+      if(!name || !phone){ alert('Vui lòng nhập họ tên và số điện thoại.'); return; }
+      // This is a static template. In production, send data to your backend or Google Forms.
+      alert('Cảm ơn ' + name + '! Yêu cầu của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ sớm.');
+      document.getElementById('contactForm').reset();
+    }
+  </script>
+</body>
+</html>
